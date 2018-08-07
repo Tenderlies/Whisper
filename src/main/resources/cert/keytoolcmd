@@ -1,0 +1,5 @@
+keytool -genkey -keystore ./whisper.keystore -alias whisper -keyalg RSA -validity  3650 -dname "CN=TS, OU=Whisper, O=com.whisper, L=WH, ST=HB, C=CN" -keypass 123456 -storepass 123456 -keytype PKCS
+
+keytool -exportcert -alias whisper  -storepass 123456 -file ./whisper.cer -keystore ./whisper.keystore
+
+keytool -importkeystore -srckeystore ./whisper.keystore -srcstoretype JKS -deststoretype PKCS12 -destkeystore ./whiper_pkcs12.keystore

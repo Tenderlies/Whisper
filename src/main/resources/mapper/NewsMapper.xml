@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tosh.whisper.dao.mapper.NewsMapper">
+	<resultMap id="BaseResultMap" type="com.tosh.whisper.model.News">
+		<result column="newsid" property="newsid" jdbcType="VARCHAR" />
+		<result column="newstitle" property="newstitle" jdbcType="VARCHAR" />
+		<result column="keyword" property="keyword" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+	</resultMap>
+	<insert id="insertSelective" parameterType="com.tosh.whisper.model.News">
+		insert into news
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="newsid != null">
+				newsid,
+			</if>
+			<if test="newstitle != null">
+				newstitle,
+			</if>
+			<if test="keyword != null">
+				keyword,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="newsid != null">
+				#{newsid},
+			</if>
+			<if test="newstitle != null">
+				#{newstitle
+				,typeHandler=com.taoshuang.study.common.handler.JSONListTypeHandler
+				},
+			</if>
+			<if test="keyword != null">
+				#{keyword},
+			</if>
+			<if test="content != null">
+				#{content},
+			</if>
+		</trim>
+	</insert>
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from news where
+		newsid=#{newsid}
+	</delete>
+
+	<select id="getNews" resultType="com.tosh.whisper.model.News"
+		parameterType="java.lang.String">
+		select * from news
+		where newsid =#{newsid}
+	</select>
+
+	<select id="getNewsList" resultMap="BaseResultMap">
+		select * from news
+	</select>
+</mapper>
