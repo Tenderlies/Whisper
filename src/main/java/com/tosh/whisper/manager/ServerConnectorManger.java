@@ -7,23 +7,20 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 import com.tosh.whisper.AppConfig;
 
-public class ServerConnectorManger
-{
-    public static ServerConnector getHttpConnctor(Server server, int port)
-    {
+public class ServerConnectorManger {
+    public static ServerConnector getHttpConnctor(Server server, int port) {
         ServerConnector httpConnector = new ServerConnector(server);
         httpConnector.setPort(port);
         return httpConnector;
     }
-    
+
     public static ServerConnector getHttpsConnctor(Server server, int port,
-            SslContextFactory sslContextFactory)
-    {
+                                                   SslContextFactory sslContextFactory) {
         ServerConnector httpsConnector = new ServerConnector(server,
                 sslContextFactory, new HttpConnectionFactory(
-                        AppConfig.getHttpsConfig()));
+                AppConfig.getHttpsConfig()));
         httpsConnector.setPort(port);
         return httpsConnector;
     }
-    
+
 }

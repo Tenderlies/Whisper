@@ -29,7 +29,7 @@
 			</if>
 			<if test="newstitle != null">
 				#{newstitle
-				,typeHandler=com.taoshuang.study.common.handler.JSONListTypeHandler
+				,typeHandler=com.tosh.whisper.support.JSONListTypeHandler
 				},
 			</if>
 			<if test="keyword != null">

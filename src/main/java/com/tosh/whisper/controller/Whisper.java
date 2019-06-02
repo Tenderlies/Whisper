@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -17,24 +18,22 @@ import com.tosh.whisper.service.NewsService;
 
 @Component
 @Path("/")
-public class Whisper
-{
+public class Whisper {
     @Autowired
     public NewsService service;
-    
+
     @GET
     @Path("test")
     @Produces(MediaType.TEXT_PLAIN)
-    public String test(@Context HttpServletRequest request) throws Exception
-    {
+    public String test(@Context HttpServletRequest request) throws Exception {
         return "abc";
     }
-    
+
     @GET
     @Path("mybatis")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<News> mybatis()
-    {
+    public List<News> mybatis() {
         return service.getNewsList();
     }
+
 }
