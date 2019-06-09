@@ -42,7 +42,7 @@ public class QRCodeController {
     @Produces("image/png")
     public Response getQRCode(@QueryParam("content") String content)
             throws WriterException, IOException {
-        content = "".equals(content) ? "https://www.baidu.com" : content;
+        content = "".equals(content) ? "https://tenderlies.github.io" : content;
         BitMatrix bitMatrix = QRCodeUtil.getQRCode(content);
 
         StreamingOutput stream = new StreamingOutput() {
